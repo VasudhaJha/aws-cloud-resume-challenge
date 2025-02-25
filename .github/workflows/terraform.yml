@@ -52,5 +52,10 @@ jobs:
               if: success() # ✅ Only runs if the plan succeeds
               working-directory: infrastructure
               run: terraform apply tfplan
+
+            - name: Terraform Destroy
+              if: success() # ✅ Only runs if the apply succeeds
+              working-directory: infrastructure
+              run: terraform destroy --auto-approve
           
 
