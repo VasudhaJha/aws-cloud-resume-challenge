@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasudha Jha - Resume</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button class="toggle-theme" onclick="toggleTheme()">🌙</button>
+    <div class="container">
+        <h1>
+            Vasudha Jha
+            <span class="contact">
+                <!-- <a href="mailto:reachvasudha27@gmail.com">reachvasudha27@gmail.com</a> |  -->
+                <a href="https://www.linkedin.com/in/vasudha-jha/">LinkedIn</a> | 
+                <a href="https://github.com/vasudhajha">GitHub</a>
+                <!-- (+91)9019945012 -->
+            </span>
+        </h1>
+
+        <div class="section">
+            <h2>Education</h2>
+            <h3>Master of Science in Computer Science</h3>
+            <p>University of California, Davis, USA (Sept 2021 – June 2023)</p>
+            <p>GPA: 3.95/4.0</p>
+            <h3>Bachelor of Technology in Computer Science & Engineering</h3>
+            <p>Kalinga Institute of Industrial Technology, India (July 2013 – July 2017)</p>
+            <p>CGPA: 9.0/10</p>
+        </div>
+
+        <div class="section">
+            <h2>Experience</h2>
+            <h3>Stanford University - Software Developer 2</h3>
+            <p>Palo Alto, California, USA (July 2023 – April 2024)</p>
+            <ul>
+                <li>Architected a scalable backend for a data analysis tool and led its cloud transformation on Google Cloud Platform.</li>
+                <li>Engineered REST-ful APIs to facilitate seamless interaction with the tool, employing best practices to ensure code quality and backend efficiency.</li>
+                <li>Optimized deployment efficiency using Docker and CI/CD pipelines, significantly reducing manual effort and deployment times.</li>
+                <li>Utilized Infrastructure as Code to automate and manage cloud infrastructure, enabling rapid, repeatable provisioning and configuration changes across environments.</li>
+            </ul>
+            <h3>UC Davis Health - Graduate Student Researcher</h3>
+            <p>Davis, California, USA (Jan 2022 – June 2023)</p>
+            <ul>
+                <li>Contributed to NIH-funded research by designing open-source tools for n-dimensional biomedical data analysis.</li>
+                <li>Implemented robust CI/CD workflows across platforms, streamlining software deployment and facilitating easy package installation with pip.</li>
+            </ul>
+            <h3>Western Digital - Product Security Software Engineer Intern</h3>
+            <p>Davis, California, USA (June 2022 – Sept 2022)</p>
+            <ul>
+                <li>Developed Software Bill of Materials (SBOM), enhancing supply chain security by facilitating critical vulnerability tracking.</li>
+                <li>Evaluated static analysis tools, influencing their adoption to mitigate software security risks.</li>
+            </ul>
+            <h3>Dell EMC - Software Engineer</h3>
+            <p>Bengaluru, India (Aug 2017 – Jan 2020)</p>
+            <ul>
+                <li>Progressed from Analyst to Software Engineer II within 2.5 years, demonstrating rapid skill acquisition and leadership in software development.</li>
+                <li>Actively contributed to the development and enhancement of enterprise iOS and web applications, significantly improving the employee experience.</li>
+                <li>Led the adoption of CI/CD and Test-Driven Development (TDD) methodologies, markedly enhancing development cycles and software quality.</li>
+                <li>Collaborated with team members through pair-programming and knowledge-sharing sessions, enhancing collective skills and fostering a learning-focused environment.</li>
+            </ul>
+            <h3>Intel - Software Engineer Intern</h3>
+            <p>Bengaluru, India (Feb 2017 – Aug 2017)</p>
+            <ul>
+                <li>Developed web interface for monitoring health of retail application used in 40+ countries across 5,000+ stores, enhancing global operational efficiency.</li>
+                <li>Mastered front-end development technologies and gained proficiency in Scrum and Agile methodologies.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Skills</h2>
+            <p>Programming Languages: Python, Swift, JavaScript, C#, Java, SQL, Bash</p>
+            <p>Frameworks: Flask, FastAPI</p>
+            <p>Cloud Platforms: Google Cloud Platform (GCP), Amazon Web Services (AWS)</p>
+            <p>DevOps: Docker, GitHub Actions, Terraform, Kubernetes</p>
+        </div>
+
+        <div class="section">
+            <h2>Certifications and Awards</h2>
+            <ul>
+                <li>AWS Certified Cloud Practitioner, 2021</li>
+                <li>Volunteer Private Tutor, Ada Developers Academy: Mentored student from non-tech background to become software developer.</li>
+                <li>Hackathon Winner at the Intel IT India Technical Leadership Conference, 2017</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.toggle-theme');
+            body.classList.toggle('dark-mode');
+            themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+    </script>
+</body>
+</html>
+

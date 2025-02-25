@@ -1,0 +1,117 @@
+:root {
+    /* Light Mode Palette */
+    --bg-color: #e3f2fd; /* Soft blue for background */
+    --card-bg-color: #ffffff; /* White cards for contrast */
+    --text-color: #37474f; /* Dark grey text for readability */
+    --heading-color: #1565c0; /* Vibrant blue for headings */
+    --link-color: #1e88e5; /* Bright blue links */
+    --link-hover-color: #0d47a1; /* Darker blue for hover */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    /* Dark Mode Palette */
+    --bg-color: #121212; /* Dark background */
+    --card-bg-color: #1e1e1e; /* Dark grey cards */
+    --text-color: #e0e0e0; /* Light grey text for contrast */
+    --heading-color: #90caf9; /* Soft blue for headings */
+    --link-color: #42a5f5; /* Light blue links */
+    --link-hover-color: #bbdefb; /* Lighter blue for hover */
+    --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+/* General Styles */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 2rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--heading-color);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+/* Text */
+p {
+    margin: 0.5rem 0;
+    color: var(--text-color);
+}
+
+/* Contact Info */
+.contact {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.contact a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.contact a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Lists */
+ul {
+    margin-left: 1.5rem;
+    color: var(--text-color);
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Toggle Button */
+.toggle-theme {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--link-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.toggle-theme:hover {
+    transform: scale(1.2);
+}
+
