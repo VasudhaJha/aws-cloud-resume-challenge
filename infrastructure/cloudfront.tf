@@ -31,6 +31,7 @@ resource "aws_cloudfront_distribution" "cloud-resume-distribution" {
     # Since static websites don't change based on query parameters or cookies, these values don’t need to be forwarded.
     forwarded_values {
       query_string = false
+      
       cookies {
         forward = "none"
       }
