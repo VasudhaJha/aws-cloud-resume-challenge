@@ -7,7 +7,6 @@ resource "aws_cloudfront_origin_access_control" "cloud-resume-oac" {
   signing_protocol                  = "sigv4"
 }
 
-
 resource "aws_cloudfront_distribution" "cloud-resume-distribution" {
   origin {
     domain_name              = aws_s3_bucket.cloud-resume-bucket.bucket_regional_domain_name
