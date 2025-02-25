@@ -50,6 +50,7 @@ resource "aws_cloudfront_distribution" "cloud-resume-distribution" {
   }
 }
 
+
 # Bucket regional domain name looks like this: <bucket-name>.s3.<region>.amazonaws.com
 # enabled=true means distribution is active and ready to serve content
 # target_origin_id links the cache behavior to the correct origin (S3 bucket in this case).

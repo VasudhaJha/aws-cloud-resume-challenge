@@ -30,22 +30,27 @@ jobs:
             
             - name: Format terraform code
               id: fmt
+              working-directory: infrastructure
               run: terraform fmt
             
             - name: Initialize Terraform
               id: init
+              working-directory: infrastructure
               run: terraform init -input=false
             
             - name: Terraform Validate
               id: validate
+              working-directory: infrastructure
               run: terraform validate -no-color
 
             - name: Terraform Plan
               id: plan
+              working-directory: infrastructure
               run: terraform plan -out=tfplan
             
             - name: Terraform Apply
               if: success() # ✅ Only runs if the plan succeeds
+              working-directory: infrastructure
               run: terraform apply tfplan
           
 
