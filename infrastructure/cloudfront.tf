@@ -13,7 +13,6 @@ resource "aws_cloudfront_distribution" "cloud-resume-distribution" {
     origin_id                = "S3-${aws_s3_bucket.cloud-resume-bucket.id}"
     origin_access_control_id = aws_cloudfront_origin_access_control.cloud-resume-oac.id
   }
-
   enabled             = true
   default_root_object = "index.html"
 
