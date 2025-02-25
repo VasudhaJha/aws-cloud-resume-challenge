@@ -23,7 +23,6 @@ resource "aws_s3_bucket_public_access_block" "block_public_access" {
   restrict_public_buckets = false
 }
 
-
 # Set up server side encryption for s3 so that objects in bucket are encrypted at rest
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_encryption" {
   bucket = aws_s3_bucket.cloud-resume-bucket.id
