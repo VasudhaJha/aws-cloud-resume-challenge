@@ -1,0 +1,51 @@
+Name: Terraform CI/CD
+
+on:
+    push:
+        paths:
+            - 'infrastructure/**' # Runs only if files in infrastructure folder change 
+        branches:
+            - main
+
+jobs:
+    terraform:
+        runs-on: ubuntu-latest
+        #permissions:
+        
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: ${{ secrets.CLOUD_RESUME_REGION}}
+
+            - name: Setup Terraform
+              uses: hashicorp/setup-terraform@v3.1.2
+              with:
+                terraform_version: "1.10.5"
+            
+            - name: Format terraform code
+              id: fmt
+              run: terraform fmt
+            
+            - name: Initialize Terraform
+              id: init
+              run: terraform init -input=false
+            
+            - name: Terraform Validate
+              id: validate
+              run: terraform validate -no-color
+
+            - name: Terraform Plan
+              id: plan
+              run: terraform plan -out=tfplan
+            
+            - name: Terraform Apply
+              if: success() # ✅ Only runs if the plan succeeds
+              run: terraform apply tfplan
+          
+
