@@ -1,22 +1,36 @@
 name: Terraform CI/CD
 
 on:
-    push:
-        paths:
-            - 'infrastructure/**' # Runs only if files in infrastructure folder change 
+    push: 
         branches:
             - main
 
 jobs:
     terraform:
         runs-on: ubuntu-latest
-        #permissions:
-        
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
 
+            - name: Detect changed files
+              id: changes
+              uses: dorny/paths-filter@v3
+              with:
+               filters: |
+                infrastructure:
+                  - "infrastructure/**"
+            
+            - name: Set terraform execution flag
+              id: set-flag
+              run: |
+                  if [[ "${{ steps.changes.outputs.infrastructure }}" == "true" || "${{ contains(github.event.head_commit.message, 'destroy infra') }}" == "true" ]];then
+                    echo "TF_RUN=true" >> $GITHUB_ENV
+                  else
+                    echo "TF_RUN=false" >> $GITHUB_ENV
+                  fi
+
             - name: Configure AWS Credentials
+              if: env.TF_RUN == 'true'
               uses: aws-actions/configure-aws-credentials@v2
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -24,37 +38,42 @@ jobs:
                 aws-region: ${{ secrets.CLOUD_RESUME_REGION}}
 
             - name: Setup Terraform
+              if: env.TF_RUN == 'true'
               uses: hashicorp/setup-terraform@v3.1.2
               with:
                 terraform_version: "1.10.5"
-            
+              
             - name: Format terraform code
+              if: env.TF_RUN == 'true'
               id: fmt
               working-directory: infrastructure
               run: terraform fmt
             
             - name: Initialize Terraform
+              if: env.TF_RUN == 'true'
               id: init
               working-directory: infrastructure
               run: terraform init -input=false
             
             - name: Terraform Validate
+              if: env.TF_RUN == 'true'
               id: validate
               working-directory: infrastructure
               run: terraform validate -no-color
 
             - name: Terraform Plan
               id: plan
+              if: env.TF_RUN == 'true' && !contains(github.event.head_commit.message, 'destroy infra')
               working-directory: infrastructure
               run: terraform plan -out=tfplan
             
             - name: Terraform Apply
-              if: success() # ✅ Only runs if the plan succeeds
+              if: env.TF_RUN == 'true' && !contains(github.event.head_commit.message, 'destroy')
               working-directory: infrastructure
               run: terraform apply tfplan
 
             - name: Terraform Destroy
-              if: success() # ✅ Only runs if the apply succeeds
+              if: contains(github.event.head_commit.message, 'destroy infra')
               working-directory: infrastructure
               run: terraform destroy --auto-approve
           
